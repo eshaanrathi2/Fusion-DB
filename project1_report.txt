@@ -1,0 +1,41 @@
+1. Basic information
+
+Student ID : W1659190
+Student Name : Calvin Thomas Dani
+OS (bit) : macOS (64 bit)
+gcc version : Apple clang version 14.0.0
+
+Student ID : W1648452
+Student Name : Eshaan Rathi
+OS (bit) : 64 bit macOS
+gcc version : Apple clang version 14.0.0 (clang-1400.0.29.102)
+
+Student ID : W1650108
+Student Name : Rohit Yadav
+OS (bit) : Windows 11 (64-bit)
+gcc version : 12.2.0
+
+2. Internal Record Format
+- The RecordBasedFileManager class handles the operation of records in paged files. It currently contains the following methods:
+	-createFile: creates a specific record-based file by invoking the createFile method in the PagedFileManager class.
+	-openFile: open a specific record-based file by invoking the openFile method in the PagedFileManager class, and then pass the file descriptor to a FileHandle object.
+	-closeFile: close a specific record-based file by invoking the closeFile method in the PagedFileManager class, and then reset the file descriptor of the FileHandle object to 0.
+	-destroyFile: delete a specific record-based file by invoking the destroyFile method in the PagedFileManager class.
+	-insertRecord: find an available space that could contain a specific record by referring to the meta-data on the page, and then insert the record by copying the bytes of the record to that space.
+	-readRecord: find the location of a specific record according to the given rid, identify its length according to the given record descriptor, and read up its data.
+	-printRecord: resolve each field of a given record by referring to the given record descriptor, and then print its content to the screen.
+
+
+
+3. Page Format
+- The PagedFileManager class handles the I/O operation of paged files. It contains 4 public methods:
+	-createFile: create a new file by invoking I/O function of C++.
+    	-destroyFile: destroy a file by invoking I/O function of C++.
+   	-openFile: open a file by invoking I/O function of C++, and then pass the file descriptor to a FileHandle object, which will be described below.
+    	-closeFile: close an opened file by invoking I/O function of C++, and resetting the file descriptor of the FileHandle object to 0.
+
+
+4. Implementation Detail
+- In this current implementation, the record structure is demarcated by null. If we are inserting, we iterate over records, and on getting consecutive nulls, we will be inserting the record there.
+For reading, we will be incrementing the records while iterating over the records and will read them.
+We will be shifting it to slot-based insertion and reading in later implementations.

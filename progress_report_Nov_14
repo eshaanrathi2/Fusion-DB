@@ -1,0 +1,64 @@
+
+MID REPORT FOR PROJECT NOV 14 :
+
+
+
+
+
+1.
+Name: Eshaan Rathi
+Functions responsible for:
+  *misc functions in pfm and rbfm
+	(PROJECT 1)
+  *createTablesDescriptor
+	Creates attributes for table's table
+  *prepareTablesTuple
+	Dynamically allocates table's tuple data in a variable
+  *createColumnsDescriptor
+	Creates attributes for column's table
+  *prepareColumnsTuple
+	Dynamically allocates column's tuple data in a variable
+  *createCatalog
+	Creates meta data about the tables and their corresponding columns.
+  *deleteCatalog
+	Delete meta data about the tables and their corresponding columns.
+2. 
+Name: CALVIN DANI W1650190
+	<--PROJECT 1 -->
+	
+Completed page design which was incomplete from Project 1 with Data occupying on the top of the heap and page size, number of slots and slot length and offset in bottom of the heap.
+
+	<rbfm>
+	Insert Record: Fetches the last available page, if free space available adds the data and header. Else appends a new page and adds the data and appends the header.
+	
+	<--PROJECT 2-->
+	<rbfm>
+	Delete Record, uses the rid and overwrites the data if any of rid available greater than it.
+The header for the specific rid is set to -1,-1.
+	The drawback of this implementation is the space once deleted in the header is lost forever and needs to be managed separately.
+	<rbfm>
+	Update Record, uses the rid and overwrites the data. Insert the newly updated record at the end and updates the page headers respectively. (IN PROGRESS)
+	<rbfm>
+	Read attribute, uses the rid to fetch the associated record. Using the record descriptor to match with the required attribute and fetches the data.
+	<rbfm>
+	Scan, goes through all data entries in all the pages and takes each slot data and compares the value to see if the data passes requirements or not (IN PROGRESS). If true. The scan will use read attribute to fetch all associated data columns.
+
+	
+2.
+Name: Rohit Yadav
+Functions responsible for:
+	<--Project1-->
+	Made changes in printRecord() of rbfm.cc class
+		-Trying to analyse the first bit of the data to check if it has null value
+	
+	<--Project3-->
+	Started implementing Index Manager
+
+	createFile() function of ix.cc class 
+		- creating a new file for a index
+	destroyFile() function of ix.cc class 
+		- deleting a file associated to any index
+	openFile() function of ix.cc class 
+		- open an index file
+	closeFile() function of ix.cc class 
+		- closing an index file

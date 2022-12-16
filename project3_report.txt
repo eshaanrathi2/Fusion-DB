@@ -1,0 +1,46 @@
+1. Basic information
+Team number  : 02
+Student ID : W1659190
+Student Name : Calvin Thomas Dani
+OS (bit) : macOS (64 bit)
+gcc version : Apple clang version 14.0.0
+
+Student ID : W1648452
+Student Name : Eshaan Rathi
+OS (bit) : 64 bit macOS
+gcc version : Apple clang version 14.0.0 (clang-1400.0.29.102)
+
+Student ID : W1650108
+Student Name : Rohit Yadav
+OS (bit) : macOS (64 bit)
+gcc version : Apple clang version 14.0.0
+
+
+2. Meta-data page in an index file
+- We have implemented createFile, destroyFile, openFile and closeFile file. 
+
+
+3. Index Entry Format
+- Show your index entry design (structure). 
+
+
+4. Page Format
+- Show your internal-page (non-leaf node) design.
+
+- Show your leaf-page (leaf node) design.
+
+
+5. Implementation Detail
+- Have you added your own source file (.cc or .h)? No
+
+- Have you implemented non-lazy deletion? Choose Yes or No: No 
+
+- Have you implemented duplicated key handling that can span multiple pages? Choose Yes or No: No
+  If yes, please explain briefly how you have implemented this feature.
+
+- Other implementation details: NA
+
+
+6. Other (optional)
+- Freely use this section to tell us about things that are related to the project 3, but not related to the other sections (optional)
+

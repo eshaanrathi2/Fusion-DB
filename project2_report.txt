@@ -1,0 +1,81 @@
+Student ID : W1659190
+Student Name : Calvin Thomas Dani
+OS (bit) : macOS (64 bit)
+gcc version : Apple clang version 14.0.0
+
+Student ID : W1648452
+Student Name : Eshaan Rathi
+OS (bit) : 64 bit macOS
+gcc version : Apple clang version 14.0.0 (clang-1400.0.29.102)
+
+Student ID : W1650108
+Student Name : Rohit Yadav
+OS (bit) : Windows 11 (64-bit)
+gcc version : 12.2.0
+
+2. Meta-data
+- Show your meta-data design (Tables and Columns table) and information about each column.
+
+Format of Catalog Tables:
+Tables (table-id:int, table-name:varchar(50), file-name:varchar(50), system-table-flag: int)
+Format of Columns:
+Columns(table-id:int, column-name:varchar(50), column-type:int, column-length:int, column-position:int)
+
+3. Internal Record Format
+- Show your record format design and describe how your design satisfies O(1) field access. If not, just mention that your team hasn't implemented this feature.
+Whenever a new record is to be entered, first getAttributes() method is used on Columns catalog. This information is passed to insertRecord of RBFM and then it performs insertion at rbfm layer only.  
+
+- Describe how you store a VarChar field.
+For storing VarChar we found out it's length and reserved a space for len(VarChar) to keep a track of offsetting.
+
+- Describe how you deal with an update and delete.
+Deletion and Updation are again built upon RBFM delete and update. We first fetch attributed using getAttributes and then pass it to RBFM. Then these operations happen at rbfm level only. We don't change RIDs in case of Deletions.
+
+
+4. Page Format
+- Show your page format design.
+Records are stored sequentially and null indicator bits in front of it.
+The Footer of the page contains page meta data such as Size available,
+Slot number,slots
+
+
+- Describe how you deal with an update and delete.
+
+Delete
+Take the record and its meta data from footer.
+Override it with records in front of it and update all footer meta data and change the rid of deleted record as -1,-1 for offset and size
+
+5. File Format
+- Show your file format design
+
+
+
+6. Implementation Detail
+- Other implementation details goes here.
+Implementation and design of createCatalog,deleteCatalog, createTable, deleteTable, getAttributes, insertTuple, deleteTuple, updateTuple, readTuple is kept same as mentioned in the description of each method on Camino. 
+
+<rbfm>
+Delete Record, uses the rid and overwrites the data if any of rid available greater than it.
+The header for the specific rid is set to -1,-1.
+The drawback of this implementation is the space once deleted in the header is lost forever and needs to be managed separately.
+<rbfm>
+Update Record, uses the rid and overwrites the data. Insert the newly updated record at the end and updates the page headers respectively. (IN PROGRESS)
+<rbfm>
+Read attribute, uses the rid to fetch the associated record. Using the record descriptor to match with the required attribute and fetches the data.
+<rbfm>
+Scan, goes through all data entries in all the pages and takes each slot data and compares the value to see if the data passes requirements or not.  If true. The scan will use read attribute to fetch all associated RID’s and stores all meta data to RBFM_SCANITERATOR. 
+<rbfm>
+Scan Iterator : 
+Stores all meta data, RID, size of all records cleared as per scan.
+Get next record:
+Uses the rid’s, reads the data using readRecord and projects the record as per projection vector.
+
+
+
+7. Other (optional)
+- Freely use this section to tell us about things that are related to the project 2, but not related to the other sections (optional)
+We also created new utility methods:
+createTablesDescriptor: creates vector<Attribute> &tablesDescriptor for Tables catalog.
+prepareTablesTuple: reserves space in variable for a record to be entered in Tables catalog.
+createColumnsDescriptor: creates vector<Attribute> &tablesDescriptor for Columns catalog.
+prepareColumnsTuple: reserves space in variable for a record to be entered in Columns catalog.
