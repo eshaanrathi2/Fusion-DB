@@ -1,3 +1,6 @@
+We built a time and space efficient Database Management System, using the fundamental databse concepts like
+Storage Architecture, File Organization, Organization of Records in Files, Data-Dictionary Storage, Database Buffer, Indexing and Query Procesing.
+
 This data base management system consists of 4 components built on top of one another, namely:
 
  1. Record Based File Manager (rbf):
