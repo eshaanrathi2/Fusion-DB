@@ -1,7 +1,7 @@
 We built a time and space efficient Database Engine, using the fundamental database concepts such as
 Storage Architecture, File Organization, Organization of Records in Files, Data-Dictionary Storage, Database Buffer, Indexing and Query Procesing.
 
-This data base management system consists of 4 components built on top of one another, namely:
+The system design can be broadly divided into 4 components built on top of one another, namely:
 
  1. Record Based File Manager (rbf):
 This layer consists of a paged file system (PF) which provides facilities for higher-level client components to perform file I/O in terms of pages.
