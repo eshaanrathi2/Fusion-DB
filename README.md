@@ -1,4 +1,4 @@
-We built a time and space efficient Database Management System, using the fundamental database concepts such as
+We built a time and space efficient Database Engine, using the fundamental database concepts such as
 Storage Architecture, File Organization, Organization of Records in Files, Data-Dictionary Storage, Database Buffer, Indexing and Query Procesing.
 
 This data base management system consists of 4 components built on top of one another, namely:
