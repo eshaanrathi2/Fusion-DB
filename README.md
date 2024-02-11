@@ -1,5 +1,7 @@
-We built Fusion DB- a time and space efficient Database Engine, using the fundamental database concepts such as
+Fusion DB is a time and space efficient Database Engine, using the fundamental database concepts such as
 Storage Architecture, File Organization, Organization of Records in Files, Data-Dictionary Storage, Database Buffer, Indexing and Query Procesing.
+
+![assets/fusion-db.png](assets/fusion-db.png)
 
 The system design can be broadly divided into 4 components built on top of one another, namely:
 
