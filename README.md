@@ -1,38 +1,81 @@
-Fusion DB is a time and space efficient Database Engine, using the fundamental database concepts such as
-Storage Architecture, File Organization, Organization of Records in Files, Data-Dictionary Storage, Database Buffer, Indexing and Query Procesing.
+# Fusion DB
+
+A fast, page-based database engine that implements core storage and query building blocks.
 
 ![assets/fusion-db.png](assets/fusion-db.png)
 
-The system design can be broadly divided into 4 components built on top of one another, namely:
+## Overview
 
- 1. Record Based File Manager (rbf):
-This layer consists of a paged file system (PF) which provides facilities for higher-level client components to perform file I/O in terms of pages.
-In the PF component, methods are provided to create, destroy, open, and close paged files, to read and write a specific page
-of a given file, and to add pages to a given file. The record manager is going to be built on top of the basic paged file system.
-The RecordBasedFileManager class handles record-based operations such as inserting, updating, deleting, and reading records.
+Fusion DB provides:
 
-2. Relation Manager (rm):
-The RelationManager class is responsible for managing the database tables. It handles the creation and deletion of tables.
-It also handles the basic operations performed on top of a table (e.g., insert and delete tuples).
+- Paged storage with variable-length records  
+- Table management (create/drop, insert/update/delete/read)  
+- Optional indexes for faster lookups  
+- A simple query layer over tables and indexes  
 
-3. Query Engine (qe):
-The QE component provides classes and methods for answering SQL queries. It is built upon 
-rm and can also use ix if needed.
+### Architecture
 
-4. Index Manager (ix):
-Facility of indexing can be provided in the rm and qe classes to make operations faster. This is an
-optional component of our DBMS and can be extended if needed.
+#### Record-Based File Manager (rbf)
 
-RUN Instructions:
+- Paged file I/O: create, destroy, open, close files; read/write pages; append pages  
+- Record operations: insert, update, delete, read  
 
-1. Modify the "CODEROOT" variable in makefile.inc to point to the root of your code base if you can't compile the code.
-2. In terminal, change directory to the class that you want to use. For instance say "rbf" and do:
+#### Relation Manager (rm)
 
-    - make clean
+- Table lifecycle: create and drop  
+- Tuple operations: insert, delete, update, scan  
 
-    - make
+#### Index Manager (ix)
 
-    - ./rbftest1
+- Optional indexing to accelerate selection and joins  
+- Integrated by rm and used by qe when present  
 
-    This will clean the existing executables, create new ones and run a testcase (here rbftest1).
-    Similarly for other components i.e. rm, ix and qe.
+#### Query Engine (qe)
+
+- Executes SQL-like queries on top of rm  
+- Can leverage ix for optimized plans  
+
+## Requirements
+
+- `make`  
+- A C++ compiler (e.g., `g++`)  
+
+## Build and Run
+
+If the build fails, set `CODEROOT` in `makefile.inc` to the root of your codebase:
+
+Edit makefile.inc
+CODEROOT=/absolute/path/to/repo/root
+
+### Build and run a component test (example: `rbf`):
+
+```
+cd rbf
+make clean
+make
+./rbftest1
+```
+
+### Repeat for other components:
+
+```
+cd rm && make clean && make && ./rmtest1
+cd ix && make clean && make && ./ixtest1
+cd qe && make clean && make && ./qetest1
+```
+
+## Project Structure
+- rbf: Record-based file manager
+- rm: Relation (table) manager
+- ix: Index manager (optional)
+- qe: Query engine
+- assets: Images and other assets
+
+## Troubleshooting
+- Build path issues:
+Verify CODEROOT in makefile.inc points to the repository root.
+- Stale artifacts:
+Run make clean before make.
+
+## Permissions:
+Ensure the process can read/write the working directory (paged files are created on disk).
